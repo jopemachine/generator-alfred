@@ -2,11 +2,16 @@
 
 > Scaffold out an [Alfred](https://www.alfredapp.com/) workflow
 
+Cloned from [generator-alfred](https://github.com/SamVerschueren/generator-alfred).
+
+Generate an workflow skeleton written on ESM, use latest version of packages.
+
+The library could be deleted when the PR is merged.
 
 ## Install
 
 ```
-$ npm install --global generator-alfred
+$ npm install --global @jopemachine/generator-alfred
 ```
 
 
@@ -15,7 +20,7 @@ $ npm install --global generator-alfred
 With [yo](https://github.com/yeoman/yo):
 
 ```
-$ yo alfred
+$ yo @jopemachine/alfred
 ```
 
 

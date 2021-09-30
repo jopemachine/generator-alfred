@@ -3,6 +3,7 @@ const superb = require('superb');
 const normalizeUrl = require('normalize-url');
 const humanizeUrl = require('humanize-url');
 const Generator = require('yeoman-generator');
+const latestVersion = require('latest-version');
 const _s = require('underscore.string');
 const utils = require('./utils');
 
@@ -63,8 +64,26 @@ module.exports = class extends Generator {
 				validate: x => x.length > 0 ? true : 'You have to provide a website URL',
 				filter: x => normalizeUrl(x)
 			}
-		]).then(props => {
+		]).then(async props => {
 			props.alfredName = props.moduleName.replace(/^alfred-/, '');
+
+			let alfyVersion;
+			let alfyTestVersion;
+			let xoVersion;
+			let avaVersion;
+
+			try {
+				alfyVersion = await latestVersion('alfy');
+				alfyTestVersion = await latestVersion('alfy-test');
+				xoVersion = await latestVersion('xo');
+				avaVersion = await latestVersion('ava');
+			} catch {
+				console.error('Fetching latest version of packages is failed.');
+				alfyVersion = '^0.12.1';
+				alfyTestVersion = '^0.4.2';
+				xoVersion = '^0.44.0';
+				avaVersion = '^3.15.0';
+			}
 
 			const tpl = {
 				moduleName: props.moduleName,
@@ -80,7 +99,11 @@ module.exports = class extends Generator {
 				email: this.user.git.email(),
 				website: props.website,
 				humanizedWebsite: humanizeUrl(props.website),
-				uuid: utils.generateUuid
+				uuid: utils.generateUuid,
+				alfyVersion,
+				alfyTestVersion,
+				xoVersion,
+				avaVersion,
 			};
 
 			const mv = (from, to) => {
