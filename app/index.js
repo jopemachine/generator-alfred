@@ -67,22 +67,22 @@ module.exports = class extends Generator {
 		]).then(async props => {
 			props.alfredName = props.moduleName.replace(/^alfred-/, '');
 
-			let alfyVersion;
-			let alfyTestVersion;
-			let xoVersion;
-			let avaVersion;
+			let alfyVersion = '^';
+			let alfyTestVersion = '^';
+			let xoVersion = '^';
+			let avaVersion = '^';
 
 			try {
-				alfyVersion = await latestVersion('alfy');
-				alfyTestVersion = await latestVersion('alfy-test');
-				xoVersion = await latestVersion('xo');
-				avaVersion = await latestVersion('ava');
+				alfyVersion += await latestVersion('alfy');
+				alfyTestVersion += await latestVersion('alfy-test');
+				xoVersion += await latestVersion('xo');
+				avaVersion += await latestVersion('ava');
 			} catch {
 				console.error('Fetching latest version of packages is failed.');
-				alfyVersion = '^0.12.1';
-				alfyTestVersion = '^0.4.2';
-				xoVersion = '^0.44.0';
-				avaVersion = '^3.15.0';
+				alfyVersion += '0.12.1';
+				alfyTestVersion += '0.4.2';
+				xoVersion += '0.44.0';
+				avaVersion += '3.15.0';
 			}
 
 			const tpl = {
@@ -117,7 +117,6 @@ module.exports = class extends Generator {
 			mv('editorconfig', '.editorconfig');
 			mv('gitattributes', '.gitattributes');
 			mv('gitignore', '.gitignore');
-			mv('travis.yml', '.travis.yml');
 			mv('_package.json', 'package.json');
 		});
 	}
