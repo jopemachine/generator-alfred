@@ -4,7 +4,9 @@
 
 Cloned from [generator-alfred](https://github.com/SamVerschueren/generator-alfred).
 
-Generate an workflow skeleton written on ESM, use latest version of packages.
+## Why?
+
+Generate an alfred-workflow skeleton written on ESM, using latest version of packages.
 
 The library could be deleted when the PR is merged.
 
