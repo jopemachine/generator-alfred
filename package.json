@@ -1,6 +1,6 @@
 {
   "name": "@jopemachine/generator-alfred",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Scaffold out an Alfred workflow",
   "license": "MIT",
   "repository": "SamVerschueren/generator-alfred",
