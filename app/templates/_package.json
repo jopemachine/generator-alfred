@@ -9,8 +9,9 @@
     "email": "<%= email %>",
     "url": "<%= humanizedWebsite %>"
   },
+	"type": "module",
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   },
   "scripts": {
     "test": "xo && ava",
